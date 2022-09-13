@@ -10,8 +10,8 @@
         <module name="jhotdraw-utils" />
         <module name="jhotdraw-api" />
         <module name="jhotdraw-gui" />
-        <module name="jhotdraw-datatransfer" />
         <module name="jhotdraw-core" />
+        <module name="jhotdraw-datatransfer" />
         <module name="jhotdraw-xml" />
         <module name="jhotdraw-samples-misc" />
         <module name="jhotdraw-app" />
