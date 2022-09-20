@@ -37,8 +37,8 @@
     <servers>
         <server>
             <id>github</id>
-            <username>-- GITHUB USERNAME --</username>
-            <password>-- GITHUB PERSONAL ACCESS TOKEN --</password>
+            <username>GITHUB USERNAME</username>
+            <password>GITHUB PERSONAL ACCESS TOKEN</password>
         </server>
     </servers>
 </settings>
