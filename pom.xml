@@ -30,11 +30,6 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<description>This is a fork of jhotdraw from http://sourceforge.net/projects/jhotdraw</description>
-	<server>
-		<id>github</id>
-		<username></username>
-		<password></password>
-	</server>
 	<repositories>
 		<repository>
 			<id>central</id>
