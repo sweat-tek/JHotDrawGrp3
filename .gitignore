@@ -152,6 +152,4 @@ nb-configuration.xml
 
 *.ftf
 
-.idea/
-
-.DS_store
+.DS_Store
