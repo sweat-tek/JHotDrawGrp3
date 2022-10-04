@@ -149,3 +149,5 @@ target
 *.patch
 nb-configuration.xml
 *.*~
+
+*.ftf
