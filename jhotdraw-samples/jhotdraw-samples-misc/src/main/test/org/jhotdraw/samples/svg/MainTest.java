@@ -1,4 +1,5 @@
-package org.jhotdraw.samples.svg;/*
+package org.jhotdraw.samples.svg;
+/*
  * Copyright (C) 2022 JHotDraw.
  *
  * This library is free software; you can redistribute it and/or
@@ -35,7 +36,7 @@ public class MainTest {
         String[] args = {};
         Main.main(args);
 
-        while (true){
+        while (true) {
 
         }
     }
