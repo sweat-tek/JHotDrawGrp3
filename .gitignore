@@ -153,3 +153,8 @@ nb-configuration.xml
 *.ftf
 
 .idea/
+<<<<<<< HEAD
+=======
+
+.DS_store
+>>>>>>> develop
