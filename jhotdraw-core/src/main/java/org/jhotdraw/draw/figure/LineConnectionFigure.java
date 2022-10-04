@@ -7,25 +7,28 @@
  */
 package org.jhotdraw.draw.figure;
 
-import java.awt.event.*;
-import java.awt.geom.*;
-import java.io.*;
-import java.util.*;
-import javax.swing.undo.*;
 import org.jhotdraw.draw.Drawing;
 import org.jhotdraw.draw.DrawingView;
 import org.jhotdraw.draw.connector.Connector;
 import org.jhotdraw.draw.event.FigureAdapter;
 import org.jhotdraw.draw.event.FigureEvent;
-import org.jhotdraw.draw.handle.BezierNodeHandle;
-import org.jhotdraw.draw.handle.BezierOutlineHandle;
-import org.jhotdraw.draw.handle.ConnectionEndHandle;
-import org.jhotdraw.draw.handle.ConnectionStartHandle;
-import org.jhotdraw.draw.handle.Handle;
+import org.jhotdraw.draw.handle.*;
 import org.jhotdraw.draw.liner.Liner;
 import org.jhotdraw.geom.BezierPath;
 import org.jhotdraw.xml.DOMInput;
 import org.jhotdraw.xml.DOMOutput;
+
+import javax.swing.undo.AbstractUndoableEdit;
+import javax.swing.undo.CannotRedoException;
+import javax.swing.undo.CannotUndoException;
+import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * A {@link ConnectionFigure} which connects two figures using a bezier path.
