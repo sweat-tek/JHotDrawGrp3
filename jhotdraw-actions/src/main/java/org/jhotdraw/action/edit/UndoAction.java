@@ -10,6 +10,7 @@ package org.jhotdraw.action.edit;
 import java.awt.event.*;
 import java.beans.*;
 import javax.swing.*;
+
 import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.action.AbstractViewAction;
 import org.jhotdraw.api.app.Application;
@@ -52,6 +53,8 @@ public class UndoAction extends AbstractViewAction {
     /**
      * Creates a new instance.
      */
+
+    @FeatureEntryPoint(value = "Undo Action")
     public UndoAction(Application app, View view) {
         super(app, view);
         labels.configureAction(this, ID);
