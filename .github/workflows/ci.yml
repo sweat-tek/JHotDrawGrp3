@@ -16,10 +16,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: build
+      - name: Build with Maven
+        run: mvn clean install --batch-mode --update-snapshots package
 
   test:
     name: Test
@@ -31,7 +29,5 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Test with Gradle
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: test
+      - name: Test with Maven
+        run: mvn clean install test --batch-mode --update-snapshots package
