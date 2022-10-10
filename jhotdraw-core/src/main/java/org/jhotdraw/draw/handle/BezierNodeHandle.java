@@ -7,21 +7,26 @@
  */
 package org.jhotdraw.draw.handle;
 
-import org.jhotdraw.draw.figure.Figure;
+import org.jhotdraw.draw.event.BezierNodeEdit;
 import org.jhotdraw.draw.figure.BezierFigure;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
-import java.util.*;
+import org.jhotdraw.draw.figure.Figure;
+import org.jhotdraw.geom.BezierPath;
+import org.jhotdraw.undo.CompositeEdit;
+import org.jhotdraw.util.ResourceBundleUtil;
+
 import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
-import org.jhotdraw.draw.*;
-import static org.jhotdraw.draw.AttributeKeys.*;
-import org.jhotdraw.draw.event.BezierNodeEdit;
-import org.jhotdraw.geom.BezierPath;
-import org.jhotdraw.undo.CompositeEdit;
-import org.jhotdraw.util.*;
+import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.Collection;
+import java.util.LinkedList;
+
+import static org.jhotdraw.draw.AttributeKeys.TRANSFORM;
 
 /**
  * A {@link Handle} which allows to interactively change a node of a bezier path.
