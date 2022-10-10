@@ -7,12 +7,11 @@
  */
 package org.jhotdraw.draw.liner;
 
-import java.util.*;
-
-import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.draw.figure.ConnectionFigure;
 import org.jhotdraw.draw.handle.Handle;
 import org.jhotdraw.geom.BezierPath;
+
+import java.util.Collection;
 
 /**
  * A <em>liner</em> encapsulates a strategy for laying out the bezier path of
@@ -39,7 +38,6 @@ public interface Liner extends Cloneable {
      *
      * @param figure The ConnectionFigure to be lined out.
      */
-    @FeatureEntryPoint(value = "Lineout")
     public void lineout(ConnectionFigure figure);
 
     /**

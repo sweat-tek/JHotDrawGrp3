@@ -7,17 +7,19 @@
  */
 package org.jhotdraw.draw.figure;
 
-import java.awt.event.*;
-import java.awt.geom.*;
-import java.util.*;
-import javax.swing.undo.*;
-
-import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.draw.DrawingView;
 import org.jhotdraw.draw.handle.BezierNodeHandle;
 import org.jhotdraw.draw.handle.BezierOutlineHandle;
 import org.jhotdraw.draw.handle.Handle;
 import org.jhotdraw.geom.BezierPath;
+
+import javax.swing.undo.AbstractUndoableEdit;
+import javax.swing.undo.CannotRedoException;
+import javax.swing.undo.CannotUndoException;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * A {@link Figure} which draws a continuous bezier path between two points.
@@ -32,7 +34,6 @@ public class LineFigure extends BezierFigure {
     /**
      * Creates a new instance.
      */
-    @FeatureEntryPoint(value = "LineFigure")
     public LineFigure() {
         addNode(new BezierPath.Node(new Point2D.Double(0, 0)));
         addNode(new BezierPath.Node(new Point2D.Double(0, 0)));

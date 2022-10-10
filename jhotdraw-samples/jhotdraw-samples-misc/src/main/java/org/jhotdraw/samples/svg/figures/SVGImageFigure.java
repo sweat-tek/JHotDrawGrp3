@@ -7,6 +7,7 @@
  */
 package org.jhotdraw.samples.svg.figures;
 
+import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.draw.figure.ImageHolderFigure;
 import java.awt.*;
 import java.awt.event.*;
@@ -63,6 +64,7 @@ public class SVGImageFigure extends SVGAttributedFigure implements SVGFigure, Im
     /**
      * Creates a new instance.
      */
+    @FeatureEntryPoint(value = "SVGImageFigure")
     public SVGImageFigure() {
         this(0, 0, 0, 0);
     }
