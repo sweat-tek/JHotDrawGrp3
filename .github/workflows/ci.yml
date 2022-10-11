@@ -5,6 +5,9 @@ on:
     branches:
       - develop
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+
 jobs:
   build:
     name: Build
@@ -19,7 +22,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean compile --batch-mode --update-snapshots package
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
 
   test:
     name: Test
@@ -34,4 +37,4 @@ jobs:
       - name: Test with Maven
         run: mvn clean install test --batch-mode --update-snapshots package
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
