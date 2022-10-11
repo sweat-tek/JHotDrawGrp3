@@ -7,12 +7,15 @@
  */
 package org.jhotdraw.samples.mini;
 
-import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
+import org.jhotdraw.draw.AttributeKeys;
 import org.jhotdraw.draw.figure.AbstractAttributedFigure;
-import java.awt.*;
-import java.awt.geom.*;
-import org.jhotdraw.draw.*;
 import org.jhotdraw.geom.Geom;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Example showing the minimal amount of code needed to implement a
