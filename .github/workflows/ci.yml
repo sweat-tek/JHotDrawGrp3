@@ -17,7 +17,9 @@ jobs:
           java-version: "11"
           distribution: "adopt"
       - name: Build with Maven
-        run: mvn clean install --batch-mode --update-snapshots package
+        run: mvn clean compile --batch-mode --update-snapshots package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     name: Test
@@ -31,3 +33,5 @@ jobs:
           distribution: "adopt"
       - name: Test with Maven
         run: mvn clean install test --batch-mode --update-snapshots package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
