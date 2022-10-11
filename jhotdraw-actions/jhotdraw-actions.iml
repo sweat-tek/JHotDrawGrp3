@@ -13,5 +13,6 @@
     <orderEntry type="module" module-name="jhotdraw-api" />
     <orderEntry type="module" module-name="jhotdraw-utils" />
     <orderEntry type="module" module-name="jhotdraw-datatransfer" />
+    <orderEntry type="library" name="Maven: dk.sdu.mmmi:featuretracer:1.0" level="project" />
   </component>
 </module>
