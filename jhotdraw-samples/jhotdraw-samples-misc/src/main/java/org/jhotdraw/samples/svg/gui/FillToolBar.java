@@ -33,6 +33,8 @@ import org.jhotdraw.text.ColorFormatter;
 import org.jhotdraw.formatter.JavaNumberFormatter;
 import org.jhotdraw.util.*;
 
+import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
+
 /**
  * FillToolBar.
  *
@@ -47,6 +49,7 @@ public class FillToolBar extends AbstractToolBar {
     /**
      * Creates new instance.
      */
+    @FeatureEntryPoint(value = "NewFillToolBar")
     public FillToolBar() {
         ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.samples.svg.Labels");
         setName(labels.getString(getID() + ".toolbar"));
@@ -66,6 +69,7 @@ public class FillToolBar extends AbstractToolBar {
     }
 
     @Override
+    @FeatureEntryPoint(value = "FillToolBar")
     protected JComponent createDisclosedComponent(int state) {
         JPanel p = null;
         switch (state) {
