@@ -28,7 +28,7 @@ public class SendToBackAction extends AbstractSelectedAction {
     /**
      * Creates a new instance.
      */
-    @FeatureEntryPoint(value = "SendToBackAction")
+    @FeatureEntryPoint("Arrange")
     public SendToBackAction(DrawingEditor editor) {
         super(editor);
         ResourceBundleUtil labels
@@ -38,6 +38,7 @@ public class SendToBackAction extends AbstractSelectedAction {
     }
 
     @Override
+    @FeatureEntryPoint("Arrange")
     public void actionPerformed(java.awt.event.ActionEvent e) {
         final DrawingView view = getView();
         final LinkedList<Figure> figures = new LinkedList<>(view.getSelectedFigures());
@@ -66,7 +67,7 @@ public class SendToBackAction extends AbstractSelectedAction {
         });
     }
 
-    @FeatureEntryPoint(value = "SendToFrontAction")
+    @FeatureEntryPoint("Arrange")
     public static void sendToBack(DrawingView view, Collection<Figure> figures) {
         Drawing drawing = view.getDrawing();
         for (Figure figure : figures) { // XXX Shouldn't the figures be sorted here back to front?
