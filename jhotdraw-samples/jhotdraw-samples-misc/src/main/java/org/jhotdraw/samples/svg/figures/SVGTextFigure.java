@@ -403,21 +403,21 @@ public class SVGTextFigure
     @Override
     public Collection<Handle> createHandles(int detailLevel) {
         LinkedList<Handle> handles = new LinkedList<Handle>();
-        switch (detailLevel % 2) {
+        if (detailLevel % 2 == -1) {
             case -1: // Mouse hover handles
-                handles.add(new BoundsOutlineHandle(this, false, true));
-                break;
+            handles.add(new BoundsOutlineHandle(this, false, true));
+        } else if (detailLevel % 2 == 0) {
             case 0:
-                handles.add(new BoundsOutlineHandle(this));
-                handles.add(new MoveHandle(this, RelativeLocator.northWest()));
-                handles.add(new MoveHandle(this, RelativeLocator.northEast()));
-                handles.add(new MoveHandle(this, RelativeLocator.southWest()));
-                handles.add(new MoveHandle(this, RelativeLocator.southEast()));
-                handles.add(new FontSizeHandle(this));
-                handles.add(new LinkHandle(this));
-                break;
+            handles.add(new BoundsOutlineHandle(this));
+            handles.add(new MoveHandle(this, RelativeLocator.northWest()));
+            handles.add(new MoveHandle(this, RelativeLocator.northEast()));
+            handles.add(new MoveHandle(this, RelativeLocator.southWest()));
+            handles.add(new MoveHandle(this, RelativeLocator.southEast()));
+            handles.add(new FontSizeHandle(this));
+            handles.add(new LinkHandle(this));
+        } else if (detailLevel % 2 == 1) {
             case 1:
-                TransformHandleKit.addTransformHandles(this, handles);
+            TransformHandleKit.addTransformHandles(this, handles);
                 break;
         }
         return handles;
