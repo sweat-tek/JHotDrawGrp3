@@ -55,7 +55,6 @@ public class RedoAction extends AbstractViewAction {
      * Creates a new instance.
      */
 
-    @FeatureEntryPoint(value = "Redo Action")
     public RedoAction(Application app, View view) {
         super(app, view);
         labels.configureAction(this, ID);
@@ -106,7 +105,7 @@ public class RedoAction extends AbstractViewAction {
         }
     }
 
-    @Override
+    @FeatureEntryPoint(value = "Redo Action")
     public void actionPerformed(ActionEvent e) {
         Action realAction = getRealRedoAction();
         if (realAction != null && realAction != this) {

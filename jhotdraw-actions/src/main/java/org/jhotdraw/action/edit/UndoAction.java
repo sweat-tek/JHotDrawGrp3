@@ -54,7 +54,6 @@ public class UndoAction extends AbstractViewAction {
      * Creates a new instance.
      */
 
-    @FeatureEntryPoint(value = "Undo Action")
     public UndoAction(Application app, View view) {
         super(app, view);
         labels.configureAction(this, ID);
@@ -105,7 +104,7 @@ public class UndoAction extends AbstractViewAction {
         }
     }
 
-    @Override
+    @FeatureEntryPoint(value = "Undo Action")
     public void actionPerformed(ActionEvent e) {
         Action realUndoAction = getRealUndoAction();
         if (realUndoAction != null && realUndoAction != this) {
