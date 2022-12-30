@@ -205,10 +205,6 @@ public class SVGTextFigure
                     break;
             }
             tx.rotate(rotates[0]);
-            /*
-             if (get(TRANSFORM) != null) {
-             tx.preConcatenate(get(TRANSFORM));
-             }*/
             cachedTextShape = tx.createTransformedShape(textLayout.getOutline(tx));
             cachedTextShape = textLayout.getOutline(tx);
         }
@@ -366,7 +362,6 @@ public class SVGTextFigure
 
     @Override
     public float getFontSize() {
-        //   return get(FONT_SIZE).floatValue();
         Point2D.Double p = new Point2D.Double(0, get(FONT_SIZE));
         AffineTransform tx = get(TRANSFORM);
         if (tx != null) {
@@ -374,12 +369,6 @@ public class SVGTextFigure
             Point2D.Double p0 = new Point2D.Double(0, 0);
             tx.transform(p0, p0);
             p.y -= p0.y;
-            /*
-             try {
-             tx.inverseTransform(p, p);
-             } catch (NoninvertibleTransformException ex) {
-             ex.printStackTrace();
-             }*/
         }
         return (float) Math.abs(p.y);
     }
@@ -404,10 +393,8 @@ public class SVGTextFigure
     public Collection<Handle> createHandles(int detailLevel) {
         LinkedList<Handle> handles = new LinkedList<Handle>();
         if (detailLevel % 2 == -1) {
-            case -1: // Mouse hover handles
             handles.add(new BoundsOutlineHandle(this, false, true));
         } else if (detailLevel % 2 == 0) {
-            case 0:
             handles.add(new BoundsOutlineHandle(this));
             handles.add(new MoveHandle(this, RelativeLocator.northWest()));
             handles.add(new MoveHandle(this, RelativeLocator.northEast()));
@@ -416,9 +403,7 @@ public class SVGTextFigure
             handles.add(new FontSizeHandle(this));
             handles.add(new LinkHandle(this));
         } else if (detailLevel % 2 == 1) {
-            case 1:
             TransformHandleKit.addTransformHandles(this, handles);
-                break;
         }
         return handles;
     }
@@ -433,7 +418,6 @@ public class SVGTextFigure
     public Tool getTool(Point2D.Double p) {
         if (isEditable() && contains(p)) {
             return new TextEditingTool(this);
-            return tool;
         }
         return null;
     }
