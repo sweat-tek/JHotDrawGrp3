@@ -11,7 +11,6 @@ import java.awt.event.*;
 import java.beans.*;
 import javax.swing.*;
 
-import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.action.AbstractViewAction;
 import org.jhotdraw.api.app.Application;
 import org.jhotdraw.api.app.View;
@@ -104,7 +103,6 @@ public class UndoAction extends AbstractViewAction {
         }
     }
 
-    @FeatureEntryPoint(value = "Undo Action")
     @Override
     public void actionPerformed(ActionEvent e) {
         Action realUndoAction = getRealUndoAction();
