@@ -240,8 +240,8 @@ public class SVGTextFigure
                 set(TRANSFORM, t);
             }
         } else {
-            for (int i = 0; i < coordinates.length; i++) {
-                tx.transform(coordinates[i], coordinates[i]);
+            for (Point2D.Double coordinate : coordinates) {
+                tx.transform(coordinate, coordinate);
             }
             if (get(FILL_GRADIENT) != null
                     && !get(FILL_GRADIENT).isRelativeToFigureBounds()) {
