@@ -106,6 +106,7 @@ public class RedoAction extends AbstractViewAction {
     }
 
     @FeatureEntryPoint(value = "Redo Action")
+    @Override
     public void actionPerformed(ActionEvent e) {
         Action realAction = getRealRedoAction();
         if (realAction != null && realAction != this) {

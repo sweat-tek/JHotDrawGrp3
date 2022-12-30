@@ -105,6 +105,7 @@ public class UndoAction extends AbstractViewAction {
     }
 
     @FeatureEntryPoint(value = "Undo Action")
+    @Override
     public void actionPerformed(ActionEvent e) {
         Action realUndoAction = getRealUndoAction();
         if (realUndoAction != null && realUndoAction != this) {
