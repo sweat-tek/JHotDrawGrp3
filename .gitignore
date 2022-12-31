@@ -229,3 +229,4 @@ buildNumber.properties
 # Custom
 jhotdraw-samples/jhotdraw-samples-misc/FeatureTraces/
 *.ftf
+*.BehaviourTest.*
