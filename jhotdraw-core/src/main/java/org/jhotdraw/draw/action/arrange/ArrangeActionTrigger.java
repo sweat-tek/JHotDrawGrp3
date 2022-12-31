@@ -27,6 +27,10 @@ public class ArrangeActionTrigger extends AbstractUndoableEdit {
         return labels.getTextProperty(strategy.getId());
     }
 
+    public void performAction() {
+        strategy.arrangeFigures(view, figures);
+    }
+
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
@@ -36,6 +40,6 @@ public class ArrangeActionTrigger extends AbstractUndoableEdit {
     @Override
     public void redo() throws CannotRedoException {
         super.redo();
-        strategy.unarrangeFigures(view, figures);
+        this.performAction();
     }
 }
