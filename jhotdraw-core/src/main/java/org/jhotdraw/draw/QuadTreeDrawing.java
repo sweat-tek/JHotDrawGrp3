@@ -153,7 +153,9 @@ public class QuadTreeDrawing extends AbstractDrawing {
     public Figure findFigureExcept(Point2D.Double p, Figure ignore) {
         Collection<Figure> c = quadTree.findContains(p);
 
-        if (c.size() == 0) return null;
+        if (c.size() == 0) {
+            return null;
+        }
 
         if (c.size() == 1) {
             Figure f = c.iterator().next();

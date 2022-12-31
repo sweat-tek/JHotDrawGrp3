@@ -141,12 +141,16 @@ public class DefaultDrawingView
      * Draws the background of the drawing view.
      */
     protected void drawBackground(Graphics2D g) {
-        if (drawing == null) drawBlankCanvas(g);
-        else if (
-                drawing.get(CANVAS_WIDTH) == null
-                || drawing.get(CANVAS_HEIGHT) == null
-        ) drawInfiniteCanvas(g);
-        else drawFiniteCanvas(g);
+        if (drawing == null) {
+            drawBlankCanvas(g);
+        } else if (
+            drawing.get(CANVAS_WIDTH) == null
+            || drawing.get(CANVAS_HEIGHT) == null
+        ) {
+            drawInfiniteCanvas(g);
+        } else {
+            drawFiniteCanvas(g);
+        }
     }
 
     private void drawBlankCanvas(Graphics2D g) {
