@@ -8,7 +8,7 @@ import java.util.Collection;
 public interface ArrangeStrategy {
 
     String getId();
-    void performMove(DrawingView view, Collection<Figure> figures);
-    void revertMove(DrawingView view, Collection<Figure> figures);
+    void arrangeFigures(DrawingView view, Collection<Figure> figures);
+    void unarrangeFigures(DrawingView view, Collection<Figure> figures);
 
 }

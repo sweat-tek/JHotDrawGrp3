@@ -30,12 +30,12 @@ public class ArrangeActionTrigger extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        strategy.performMove(view, figures);
+        strategy.arrangeFigures(view, figures);
     }
 
     @Override
     public void redo() throws CannotRedoException {
         super.redo();
-        strategy.revertMove(view, figures);
+        strategy.unarrangeFigures(view, figures);
     }
 }

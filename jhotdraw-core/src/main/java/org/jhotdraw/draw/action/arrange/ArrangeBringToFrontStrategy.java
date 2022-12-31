@@ -16,13 +16,13 @@ public class ArrangeBringToFrontStrategy implements ArrangeStrategy {
     }
 
     @Override
-    public void performMove(DrawingView view, Collection<Figure> figures) {
+    public void arrangeFigures(DrawingView view, Collection<Figure> figures) {
         Drawing drawing = view.getDrawing();
         drawing.sort(figures).forEach(drawing::bringToFront);
     }
 
     @Override
-    public void revertMove(DrawingView view, Collection<Figure> figures) {
+    public void unarrangeFigures(DrawingView view, Collection<Figure> figures) {
         figures.forEach(view.getDrawing()::sendToBack);
     }
 

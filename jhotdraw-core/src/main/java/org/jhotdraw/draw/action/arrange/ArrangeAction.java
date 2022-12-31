@@ -22,7 +22,7 @@ public class ArrangeAction extends AbstractSelectedAction {
     public void actionPerformed(ActionEvent e) {
         ArrangeActionTrigger action = new ArrangeActionTrigger(strategy, getView(), getView().getSelectedFigures());
 
-        strategy.performMove(getView(), getView().getSelectedFigures());
+        strategy.arrangeFigures(getView(), getView().getSelectedFigures());
 
         fireUndoableEditHappened(action);
     }
