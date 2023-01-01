@@ -28,6 +28,7 @@ public class GroupingAction extends AbstractSelectedAction {
         this.groupingStrategy = groupingStrategy;
 
         setLabel();
+        updateEnabledState();
     }
 
     private void setLabel() {
