@@ -8,8 +8,8 @@ import org.jhotdraw.draw.figure.GroupFigure;
 
 public class GroupingActionFactory {
     private final DrawingEditor drawingEditor;
-    private CompositeFigure compositeFigure;
-    private GroupingStrategy groupingStrategy;
+    private CompositeFigure compositeFigure = null;
+    private GroupingStrategy groupingStrategy = null;
 
     private GroupingActionFactory(DrawingEditor drawingEditor) {
         this.drawingEditor = drawingEditor;
