@@ -16,15 +16,15 @@ public class UngroupStrategy implements GroupingStrategy {
     }
 
     @Override
-    public boolean canPerformAction(DrawingView drawingView, CompositeFigure compositeFigure, Collection<Figure> figures) {
+    public boolean canPerformAction(DrawingView drawingView, CompositeFigure prototype, Collection<Figure> figures) {
         return  drawingView.getSelectionCount() == 1 &&
                 drawingView.getSelectedFigures().iterator().next().getClass().equals(
-                    compositeFigure.getClass()
+                    prototype.getClass()
                 );
     }
 
     @Override
-    public void performGroupingAction(DrawingView drawingView, CompositeFigure compositeFigure, Collection<Figure> figures) {
+    public void performGroupingAction(DrawingView drawingView, CompositeFigure prototype, Collection<Figure> figures) {
         throw new NotImplementedException();
     }
 }

@@ -21,18 +21,18 @@ public interface GroupingStrategy {
 
     /**
      * @param drawingView The DrawingView which manages the views.
-     * @param compositeFigure The composite figure
-     * @param figures    The Figures which should be grouped
+     * @param prototype  The CompositeFigure prototype
+     * @param figures    The figures to be grouped (only applicable for GroupStrategy, leave empty collection else)
      * @return True, if the strategy action can be performed.
      */
-    boolean canPerformAction(DrawingView drawingView, CompositeFigure compositeFigure, Collection<Figure> figures);
+    boolean canPerformAction(DrawingView drawingView, CompositeFigure prototype, Collection<Figure> figures);
 
     /**
      * Performs the grouping action corresponding to the strategy
      *
-     * @param drawingView The drawing view
-     * @param compositeFigure The composite figure
+     * @param drawingView The DrawingView which manages the views.
+     * @param prototype  The CompositeFigure prototype
      * @param figures The figures to be grouped (only applicable for GroupStrategy, leave empty collection else)
      */
-    void performGroupingAction(DrawingView drawingView, CompositeFigure compositeFigure, Collection<Figure> figures);
+    void performGroupingAction(DrawingView drawingView, CompositeFigure prototype, Collection<Figure> figures);
 }

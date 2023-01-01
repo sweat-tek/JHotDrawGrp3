@@ -13,8 +13,8 @@ import java.awt.event.ActionEvent;
  * @version $Id$
  */
 public class GroupingAction extends AbstractSelectedAction {
-    private CompositeFigure compositeFigure;
-    private GroupingStrategy groupingStrategy;
+    private final CompositeFigure prototype;
+    private final GroupingStrategy groupingStrategy;
 
     /**
      * Creates an action which acts on the selected figures on the current view
@@ -24,7 +24,7 @@ public class GroupingAction extends AbstractSelectedAction {
      */
     protected GroupingAction(DrawingEditor editor, CompositeFigure compositeFigure, GroupingStrategy groupingStrategy) {
         super(editor);
-        this.compositeFigure = compositeFigure;
+        this.prototype = compositeFigure;
         this.groupingStrategy = groupingStrategy;
 
         setLabel();
@@ -40,7 +40,7 @@ public class GroupingAction extends AbstractSelectedAction {
     protected void updateEnabledState() {
         setEnabled(groupingStrategy.canPerformAction(
                 getView(),
-                compositeFigure,
+                prototype,
                 getView().getSelectedFigures()
         ));
     }
