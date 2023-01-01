@@ -4,6 +4,7 @@ import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.action.AbstractSelectedAction;
 import org.jhotdraw.draw.action.grouping.strategy.GroupingStrategy;
 import org.jhotdraw.draw.figure.CompositeFigure;
+import org.jhotdraw.util.ResourceBundleUtil;
 
 import java.awt.event.ActionEvent;
 
@@ -25,6 +26,13 @@ public class GroupingAction extends AbstractSelectedAction {
         super(editor);
         this.compositeFigure = compositeFigure;
         this.groupingStrategy = groupingStrategy;
+
+        setLabel();
+    }
+
+    private void setLabel() {
+        ResourceBundleUtil labels  = ResourceBundleUtil.getBundle("org.jhotdraw.draw.Labels");
+        labels.configureAction(this, groupingStrategy.getID());
     }
 
     @Override
