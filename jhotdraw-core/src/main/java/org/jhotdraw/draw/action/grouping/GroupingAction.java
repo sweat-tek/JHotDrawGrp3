@@ -38,15 +38,16 @@ public class GroupingAction extends AbstractSelectedAction {
 
     @Override
     protected void updateEnabledState() {
-        if (groupingStrategy == null) {
+        try {
+            setEnabled(groupingStrategy.canPerformAction(
+                getView(),
+                prototype,
+                getView().getSelectedFigures()
+            ));
+        } catch (NullPointerException e) {
+            // If not initialized yet, then disable the action
             setEnabled(false);
-            return;
         }
-        setEnabled(groupingStrategy.canPerformAction(
-            getView(),
-            prototype,
-            getView().getSelectedFigures()
-        ));
     }
 
     @Override
