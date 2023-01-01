@@ -16,6 +16,16 @@ public class UngroupStrategy implements GroupingStrategy {
     }
 
     @Override
+    public boolean canPerformAction(DrawingView drawingView, Collection<Figure> figures) {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    @Override
     public void performGroupingAction(DrawingView drawingView, CompositeFigure compositeFigure, Collection<Figure> figures) {
         throw new NotImplementedException();
     }
