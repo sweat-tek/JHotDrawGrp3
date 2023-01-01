@@ -39,7 +39,6 @@ public class GroupingAction extends AbstractSelectedAction {
     @Override
     protected void updateEnabledState() {
         if (groupingStrategy == null) {
-            System.out.println("groupingStrategy is null");
             setEnabled(false);
             return;
         }
