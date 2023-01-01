@@ -4,9 +4,11 @@ import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.action.AbstractSelectedAction;
 import org.jhotdraw.draw.action.grouping.strategy.GroupingStrategy;
 import org.jhotdraw.draw.figure.CompositeFigure;
+import org.jhotdraw.draw.figure.Figure;
 import org.jhotdraw.util.ResourceBundleUtil;
 
 import java.awt.event.ActionEvent;
+import java.util.LinkedList;
 
 /**
  * @author Alexander Matzen
@@ -39,14 +41,19 @@ public class GroupingAction extends AbstractSelectedAction {
     @Override
     protected void updateEnabledState() {
         setEnabled(groupingStrategy.canPerformAction(
-                getView(),
-                prototype,
-                getView().getSelectedFigures()
+            getView(),
+            prototype,
+            getView().getSelectedFigures()
         ));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        groupingStrategy.performGroupingAction(
+            getView(),
+            prototype,
+            getView().getSelectedFigures()
+        );
 
     }
 
