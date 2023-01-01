@@ -6,6 +6,8 @@ import org.jhotdraw.draw.action.grouping.strategy.GroupingStrategy;
 import org.jhotdraw.draw.figure.CompositeFigure;
 import org.jhotdraw.draw.figure.GroupFigure;
 
+import java.util.Objects;
+
 public class GroupingActionFactory {
     private final DrawingEditor drawingEditor;
     private CompositeFigure compositeFigure = null;
@@ -30,11 +32,13 @@ public class GroupingActionFactory {
     }
 
     public GroupingAction create() {
-        if (compositeFigure == null) {
+        if (Objects.isNull(compositeFigure)) {
+            System.out.println("[INFO] GroupingActionFactory: compositeFigure is null, defaulting to GroupFigure");
             compositeFigure = new GroupFigure();
         }
 
-        if (groupingStrategy == null) {
+        if (Objects.isNull(groupingStrategy)) {
+            System.out.println("[INFO] GroupingActionFactory: is null, defaulting to GroupStrategy");
             groupingStrategy = new GroupStrategy();
         }
 
