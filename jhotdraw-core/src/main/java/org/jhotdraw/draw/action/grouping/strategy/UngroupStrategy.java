@@ -8,9 +8,11 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Collection;
 
 public class UngroupStrategy implements GroupingStrategy {
+    public static final String ID = "edit.ungroupSelection";
+
     @Override
     public String getID() {
-        return null;
+        return UngroupStrategy.ID;
     }
 
     @Override
