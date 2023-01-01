@@ -37,6 +37,15 @@ public class GroupingAction extends AbstractSelectedAction {
     }
 
     @Override
+    protected void updateEnabledState() {
+        setEnabled(groupingStrategy.canPerformAction(
+                getView(),
+                compositeFigure,
+                getView().getSelectedFigures()
+        ));
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
 
     }
