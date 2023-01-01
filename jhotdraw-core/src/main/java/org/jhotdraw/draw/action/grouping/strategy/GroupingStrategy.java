@@ -20,6 +20,13 @@ public interface GroupingStrategy {
     String getID();
 
     /**
+     * Determines whether the strategy action can be performed.
+     *
+     * @return True, if the strategy action can be performed.
+     */
+    boolean isEnabled();
+
+    /**
      * Performs the grouping action corresponding to the strategy
      *
      * @param drawingView The drawing view
