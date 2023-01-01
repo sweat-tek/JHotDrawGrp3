@@ -7,21 +7,15 @@
  */
 package org.jhotdraw.samples.svg.gui;
 
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.border.*;
-
-import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.action.edit.DuplicateAction;
 import org.jhotdraw.draw.AttributeKey;
 import org.jhotdraw.draw.AttributeKeys;
-import static org.jhotdraw.draw.AttributeKeys.PATH_CLOSED;
 import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.DrawingView;
 import org.jhotdraw.draw.action.*;
+import org.jhotdraw.draw.action.arrange.ArrangeAction;
+import org.jhotdraw.draw.action.arrange.ArrangeBringToFrontStrategy;
+import org.jhotdraw.draw.action.arrange.ArrangeSendToBackStrategy;
 import org.jhotdraw.draw.tool.CreationTool;
 import org.jhotdraw.draw.tool.TextAreaCreationTool;
 import org.jhotdraw.draw.tool.TextCreationTool;
@@ -31,15 +25,19 @@ import org.jhotdraw.samples.svg.PathTool;
 import org.jhotdraw.samples.svg.SVGCreateFromFileTool;
 import org.jhotdraw.samples.svg.action.CombineAction;
 import org.jhotdraw.samples.svg.action.SplitAction;
-import org.jhotdraw.samples.svg.figures.SVGBezierFigure;
-import org.jhotdraw.samples.svg.figures.SVGEllipseFigure;
-import org.jhotdraw.samples.svg.figures.SVGGroupFigure;
-import org.jhotdraw.samples.svg.figures.SVGImageFigure;
-import org.jhotdraw.samples.svg.figures.SVGPathFigure;
-import org.jhotdraw.samples.svg.figures.SVGRectFigure;
-import org.jhotdraw.samples.svg.figures.SVGTextAreaFigure;
-import org.jhotdraw.samples.svg.figures.SVGTextFigure;
-import org.jhotdraw.util.*;
+import org.jhotdraw.samples.svg.figures.*;
+import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import static org.jhotdraw.draw.AttributeKeys.PATH_CLOSED;
 
 /**
  * DrawToolsPane.
@@ -54,14 +52,12 @@ public class ToolsToolBar extends AbstractToolBar {
     /**
      * Creates new instance.
      */
-    @FeatureEntryPoint(value = "TextToolNew")
     public ToolsToolBar() {
         ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.samples.svg.Labels");
         setName(labels.getString("tools.toolbar"));
     }
 
     @Override
-    @FeatureEntryPoint(value = "TextTool")
     protected JComponent createDisclosedComponent(int state) {
         JPanel p = null;
         switch (state) {
@@ -190,9 +186,9 @@ public class ToolsToolBar extends AbstractToolBar {
         list.add(a = new SplitAction(editor));
         disposables.add(a);
         list.add(null); // separator
-        list.add(a = new BringToFrontAction(editor));
+        list.add(a = new ArrangeAction(editor, new ArrangeBringToFrontStrategy()));
         disposables.add(a);
-        list.add(a = new SendToBackAction(editor));
+        list.add(a = new ArrangeAction(editor, new ArrangeSendToBackStrategy()));
         disposables.add(a);
         return list;
     }
