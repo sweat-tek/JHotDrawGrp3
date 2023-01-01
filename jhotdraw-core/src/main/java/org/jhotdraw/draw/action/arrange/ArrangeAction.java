@@ -1,5 +1,6 @@
 package org.jhotdraw.draw.action.arrange;
 
+import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.DrawingView;
 import org.jhotdraw.draw.action.AbstractSelectedAction;
@@ -12,6 +13,7 @@ import java.util.Collection;
 public class ArrangeAction extends AbstractSelectedAction {
     private final ArrangeStrategy strategy;
 
+    @FeatureEntryPoint("Arrange")
     public ArrangeAction(DrawingEditor editor, ArrangeStrategy strategy) {
         super(editor);
         this.strategy = strategy;
@@ -22,6 +24,7 @@ public class ArrangeAction extends AbstractSelectedAction {
     }
 
     @Override
+    @FeatureEntryPoint("Arrange")
     public void actionPerformed(ActionEvent e) {
         final DrawingView view = getView();
         final Collection<Figure> figures = view.getSelectedFigures();
