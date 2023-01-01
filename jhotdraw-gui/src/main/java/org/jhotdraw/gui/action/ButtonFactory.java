@@ -21,6 +21,9 @@ import org.jhotdraw.draw.action.*;
 import org.jhotdraw.draw.action.arrange.ArrangeAction;
 import org.jhotdraw.draw.action.arrange.ArrangeBringToFrontStrategy;
 import org.jhotdraw.draw.action.arrange.ArrangeSendToBackStrategy;
+import org.jhotdraw.draw.action.grouping.GroupingActionFactory;
+import org.jhotdraw.draw.action.grouping.strategy.GroupStrategy;
+import org.jhotdraw.draw.action.grouping.strategy.UngroupStrategy;
 import org.jhotdraw.draw.decoration.ArrowTip;
 import org.jhotdraw.draw.decoration.LineDecoration;
 import org.jhotdraw.draw.event.SelectionComponentRepainter;
@@ -291,8 +294,16 @@ public class ButtonFactory {
         LinkedList<Action> a = new LinkedList<>();
         a.add(new DuplicateAction());
         a.add(null); // separator
-        a.add(new GroupAction(editor));
-        a.add(new UngroupAction(editor));
+        a.add(
+            GroupingActionFactory.initiate(editor)
+            .withGroupingStrategy(new GroupStrategy())
+            .create()
+        );
+        a.add(
+            GroupingActionFactory.initiate(editor)
+            .withGroupingStrategy(new UngroupStrategy())
+            .create()
+        );
         a.add(null); // separator
         a.add(new ArrangeAction(editor, new ArrangeBringToFrontStrategy()));
         a.add(new ArrangeAction(editor, new ArrangeSendToBackStrategy()));

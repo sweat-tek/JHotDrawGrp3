@@ -24,6 +24,9 @@ import org.jhotdraw.action.edit.PasteAction;
 import org.jhotdraw.action.edit.SelectAllAction;
 import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.action.*;
+import org.jhotdraw.draw.action.grouping.GroupingActionFactory;
+import org.jhotdraw.draw.action.grouping.strategy.GroupStrategy;
+import org.jhotdraw.draw.action.grouping.strategy.UngroupStrategy;
 import org.jhotdraw.gui.JPopupButton;
 import org.jhotdraw.gui.action.ButtonFactory;
 import org.jhotdraw.gui.plaf.palette.PaletteButtonUI;
@@ -181,9 +184,18 @@ public class ActionsToolBar extends AbstractToolBar {
             pb.removeAll();
             pb.add(new DuplicateAction());
             pb.addSeparator();
-            pb.add(d = new GroupAction(editor, new SVGGroupFigure()));
+            pb.add(
+                    d = GroupingActionFactory.initiate(editor)
+                    .withGroupingStrategy(new GroupStrategy())
+                    .create()
+            );
             disposables.add(d);
-            pb.add(d = new UngroupAction(editor, new SVGGroupFigure()));
+            pb.add(
+                    d = GroupingActionFactory.initiate(editor)
+                    .withCompositeFigure(new SVGGroupFigure())
+                    .withGroupingStrategy(new UngroupStrategy())
+                    .create()
+            );
             disposables.add(d);
             pb.addSeparator();
             pb.add(new CutAction());

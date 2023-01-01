@@ -31,6 +31,9 @@ import org.jhotdraw.draw.action.*;
 import org.jhotdraw.draw.action.arrange.ArrangeAction;
 import org.jhotdraw.draw.action.arrange.ArrangeBringToFrontStrategy;
 import org.jhotdraw.draw.action.arrange.ArrangeSendToBackStrategy;
+import org.jhotdraw.draw.action.grouping.GroupingActionFactory;
+import org.jhotdraw.draw.action.grouping.strategy.GroupStrategy;
+import org.jhotdraw.draw.action.grouping.strategy.UngroupStrategy;
 import org.jhotdraw.draw.io.InputFormat;
 import org.jhotdraw.draw.io.OutputFormat;
 import org.jhotdraw.gui.JFileURIChooser;
@@ -91,8 +94,16 @@ public class SVGApplicationModel extends DefaultApplicationModel {
         AbstractSelectedAction action;
         ActionMap m = view.getActionMap();
         m.put(SelectSameAction.ID, new SelectSameAction(editor));
-        m.put(GroupAction.ID, new GroupAction(editor, new SVGGroupFigure()));
-        m.put(UngroupAction.ID, new UngroupAction(editor, new SVGGroupFigure()));
+        m.put(GroupStrategy.ID, GroupingActionFactory.initiate(editor)
+                .withCompositeFigure(new SVGGroupFigure())
+                .withGroupingStrategy(new GroupStrategy())
+                .create()
+        );
+        m.put(UngroupStrategy.ID, GroupingActionFactory.initiate(editor)
+                .withCompositeFigure(new SVGGroupFigure())
+                .withGroupingStrategy(new UngroupStrategy())
+                .create()
+        );
         m.put(CombineAction.ID, new CombineAction(editor));
         m.put(SplitAction.ID, new SplitAction(editor));
         m.put(ArrangeBringToFrontStrategy.ID, new ArrangeAction(editor, new ArrangeBringToFrontStrategy()));
@@ -120,8 +131,16 @@ public class SVGApplicationModel extends DefaultApplicationModel {
             editor = (v == null) ? null : v.getEditor();
         }
         m.put(SelectSameAction.ID, new SelectSameAction(editor));
-        m.put(GroupAction.ID, new GroupAction(editor, new SVGGroupFigure()));
-        m.put(UngroupAction.ID, new UngroupAction(editor, new SVGGroupFigure()));
+        m.put(GroupStrategy.ID, GroupingActionFactory.initiate(editor)
+                .withCompositeFigure(new SVGGroupFigure())
+                .withGroupingStrategy(new GroupStrategy())
+                .create()
+        );
+        m.put(UngroupStrategy.ID, GroupingActionFactory.initiate(editor)
+                .withCompositeFigure(new SVGGroupFigure())
+                .withGroupingStrategy(new UngroupStrategy())
+                .create()
+        );
         m.put(CombineAction.ID, new CombineAction(editor));
         m.put(SplitAction.ID, new SplitAction(editor));
         m.put(ArrangeBringToFrontStrategy.ID, new ArrangeAction(editor, new ArrangeBringToFrontStrategy()));
@@ -145,8 +164,8 @@ public class SVGApplicationModel extends DefaultApplicationModel {
             @Override
             public void addOtherEditItems(JMenu m, Application app, View v) {
                 ActionMap am = app.getActionMap(v);
-                m.add(am.get(GroupAction.ID));
-                m.add(am.get(UngroupAction.ID));
+                m.add(am.get(GroupStrategy.ID));
+                m.add(am.get(UngroupStrategy.ID));
                 m.add(am.get(CombineAction.ID));
                 m.add(am.get(SplitAction.ID));
                 m.addSeparator();
