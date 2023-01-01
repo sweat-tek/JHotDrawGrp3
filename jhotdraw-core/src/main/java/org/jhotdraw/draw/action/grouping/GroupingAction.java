@@ -4,11 +4,9 @@ import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.action.AbstractSelectedAction;
 import org.jhotdraw.draw.action.grouping.strategy.GroupingStrategy;
 import org.jhotdraw.draw.figure.CompositeFigure;
-import org.jhotdraw.draw.figure.Figure;
 import org.jhotdraw.util.ResourceBundleUtil;
 
 import java.awt.event.ActionEvent;
-import java.util.LinkedList;
 
 /**
  * @author Alexander Matzen
