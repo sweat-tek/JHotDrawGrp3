@@ -34,7 +34,7 @@ public class ArrangeActionTrigger extends AbstractUndoableEdit {
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        strategy.arrangeFigures(view, figures);
+        strategy.unarrangeFigures(view, figures);
     }
 
     @Override
