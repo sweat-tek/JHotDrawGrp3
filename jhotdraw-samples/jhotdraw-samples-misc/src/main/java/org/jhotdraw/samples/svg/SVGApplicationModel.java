@@ -28,6 +28,9 @@ import org.jhotdraw.draw.Drawing;
 import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.GridConstrainer;
 import org.jhotdraw.draw.action.*;
+import org.jhotdraw.draw.action.arrange.ArrangeAction;
+import org.jhotdraw.draw.action.arrange.ArrangeBringToFrontStrategy;
+import org.jhotdraw.draw.action.arrange.ArrangeSendToBackStrategy;
 import org.jhotdraw.draw.io.InputFormat;
 import org.jhotdraw.draw.io.OutputFormat;
 import org.jhotdraw.gui.JFileURIChooser;
@@ -92,8 +95,8 @@ public class SVGApplicationModel extends DefaultApplicationModel {
         m.put(UngroupAction.ID, new UngroupAction(editor, new SVGGroupFigure()));
         m.put(CombineAction.ID, new CombineAction(editor));
         m.put(SplitAction.ID, new SplitAction(editor));
-        m.put(BringToFrontAction.ID, new BringToFrontAction(editor));
-        m.put(SendToBackAction.ID, new SendToBackAction(editor));
+        m.put(ArrangeBringToFrontStrategy.ID, new ArrangeAction(editor, new ArrangeBringToFrontStrategy()));
+        m.put(ArrangeSendToBackStrategy.ID, new ArrangeAction(editor, new ArrangeSendToBackStrategy()));
         //view.addDisposable(action);
     }
 
@@ -121,8 +124,8 @@ public class SVGApplicationModel extends DefaultApplicationModel {
         m.put(UngroupAction.ID, new UngroupAction(editor, new SVGGroupFigure()));
         m.put(CombineAction.ID, new CombineAction(editor));
         m.put(SplitAction.ID, new SplitAction(editor));
-        m.put(BringToFrontAction.ID, new BringToFrontAction(editor));
-        m.put(SendToBackAction.ID, new SendToBackAction(editor));
+        m.put(ArrangeBringToFrontStrategy.ID, new ArrangeAction(editor, new ArrangeBringToFrontStrategy()));
+        m.put(ArrangeSendToBackStrategy.ID, new ArrangeAction(editor, new ArrangeSendToBackStrategy()));
         return m;
     }
 
@@ -147,8 +150,8 @@ public class SVGApplicationModel extends DefaultApplicationModel {
                 m.add(am.get(CombineAction.ID));
                 m.add(am.get(SplitAction.ID));
                 m.addSeparator();
-                m.add(am.get(BringToFrontAction.ID));
-                m.add(am.get(SendToBackAction.ID));
+                m.add(am.get(ArrangeBringToFrontStrategy.ID));
+                m.add(am.get(ArrangeSendToBackStrategy.ID));
             }
 
             @Override

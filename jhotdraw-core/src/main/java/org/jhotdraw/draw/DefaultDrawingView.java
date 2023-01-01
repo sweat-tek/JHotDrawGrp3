@@ -142,38 +142,52 @@ public class DefaultDrawingView
      */
     protected void drawBackground(Graphics2D g) {
         if (drawing == null) {
-            // there is no drawing and thus no canvas
-            g.setColor(getBackground());
-            g.fillRect(0, 0, getWidth(), getHeight());
-        } else if (drawing.get(CANVAS_WIDTH) == null
-                || drawing.get(CANVAS_HEIGHT) == null) {
-            // the canvas is infinitely large
-            Color canvasColor = drawing.get(CANVAS_FILL_COLOR);
-            double canvasOpacity = drawing.get(CANVAS_FILL_OPACITY);
-            if (canvasColor != null) {
-                if (canvasOpacity == 1) {
-                    g.setColor(new Color(canvasColor.getRGB()));
-                    g.fillRect(0, 0, getWidth(), getHeight());
-                } else {
-                    Point r = drawingToView(new Point2D.Double(0, 0));
-                    g.setPaint(getBackgroundPaint(r.x, r.y));
-                    g.fillRect(0, 0, getWidth(), getHeight());
-                    g.setColor(new Color(canvasColor.getRGB() & 0xfffff | ((int) (canvasOpacity * 256) << 24), true));
-                    g.fillRect(0, 0, getWidth(), getHeight());
-                }
+            drawBlankCanvas(g);
+        } else if (
+            drawing.get(CANVAS_WIDTH) == null
+            || drawing.get(CANVAS_HEIGHT) == null
+        ) {
+            drawInfiniteCanvas(g);
+        } else {
+            drawFiniteCanvas(g);
+        }
+    }
+
+    private void drawBlankCanvas(Graphics2D g) {
+        // there is no drawing and thus no canvas
+        g.setColor(getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
+    }
+
+    private void drawFiniteCanvas(Graphics2D g) {
+        // the canvas has a fixed size
+        g.setColor(getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
+        Rectangle r = drawingToView(new Rectangle2D.Double(0, 0, drawing.get(CANVAS_WIDTH),
+                drawing.get(CANVAS_HEIGHT)));
+        g.setPaint(getBackgroundPaint(r.x, r.y));
+        g.fillRect(r.x, r.y, r.width, r.height);
+    }
+
+    private void drawInfiniteCanvas(Graphics2D g) {
+        // the canvas is infinitely large
+        Color canvasColor = drawing.get(CANVAS_FILL_COLOR);
+        double canvasOpacity = drawing.get(CANVAS_FILL_OPACITY);
+        if (canvasColor != null) {
+            if (canvasOpacity == 1) {
+                g.setColor(new Color(canvasColor.getRGB()));
+                g.fillRect(0, 0, getWidth(), getHeight());
             } else {
                 Point r = drawingToView(new Point2D.Double(0, 0));
                 g.setPaint(getBackgroundPaint(r.x, r.y));
                 g.fillRect(0, 0, getWidth(), getHeight());
+                g.setColor(new Color(canvasColor.getRGB() & 0xfffff | ((int) (canvasOpacity * 256) << 24), true));
+                g.fillRect(0, 0, getWidth(), getHeight());
             }
         } else {
-            // the canvas has a fixed size
-            g.setColor(getBackground());
-            g.fillRect(0, 0, getWidth(), getHeight());
-            Rectangle r = drawingToView(new Rectangle2D.Double(0, 0, drawing.get(CANVAS_WIDTH),
-                    drawing.get(CANVAS_HEIGHT)));
+            Point r = drawingToView(new Point2D.Double(0, 0));
             g.setPaint(getBackgroundPaint(r.x, r.y));
-            g.fillRect(r.x, r.y, r.width, r.height);
+            g.fillRect(0, 0, getWidth(), getHeight());
         }
     }
 

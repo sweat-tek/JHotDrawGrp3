@@ -7,6 +7,9 @@
  */
 package org.jhotdraw.samples.svg.gui;
 
+import org.jhotdraw.draw.action.arrange.ArrangeAction;
+import org.jhotdraw.draw.action.arrange.ArrangeBringToFrontStrategy;
+import org.jhotdraw.draw.action.arrange.ArrangeSendToBackStrategy;
 import org.jhotdraw.gui.plaf.palette.PaletteButtonUI;
 import java.awt.*;
 import javax.swing.*;
@@ -66,21 +69,21 @@ public class ArrangeToolBar extends AbstractToolBar {
                 GridBagConstraints gbc;
                 AbstractButton btn;
                 AbstractSelectedAction d;
-                btn = new JButton(d = new BringToFrontAction(editor));
+                btn = new JButton(d = new ArrangeAction(editor, new ArrangeBringToFrontStrategy()));
                 disposables.add(d);
                 btn.setUI((PaletteButtonUI) PaletteButtonUI.createUI(btn));
                 btn.setText(null);
-                labels.configureToolBarButton(btn, BringToFrontAction.ID);
+                labels.configureToolBarButton(btn, ArrangeBringToFrontStrategy.ID);
                 btn.putClientProperty("hideActionText", Boolean.TRUE);
                 gbc = new GridBagConstraints();
                 gbc.gridy = 0;
                 gbc.anchor = GridBagConstraints.EAST;
                 p.add(btn, gbc);
-                btn = new JButton(d = new SendToBackAction(editor));
+                btn = new JButton(d = new ArrangeAction(editor, new ArrangeSendToBackStrategy()));
                 disposables.add(d);
                 btn.setUI((PaletteButtonUI) PaletteButtonUI.createUI(btn));
                 btn.setText(null);
-                labels.configureToolBarButton(btn, SendToBackAction.ID);
+                labels.configureToolBarButton(btn, ArrangeSendToBackStrategy.ID);
                 btn.putClientProperty("hideActionText", Boolean.TRUE);
                 btn.setUI((PaletteButtonUI) PaletteButtonUI.createUI(btn));
                 gbc = new GridBagConstraints();
