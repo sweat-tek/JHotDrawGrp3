@@ -31,7 +31,7 @@ public interface GroupingStrategy {
      *
      * @return True, if the strategy action can be performed.
      */
-    boolean isEnabled();
+    //boolean isEnabled();
 
     /**
      * Performs the grouping action corresponding to the strategy
