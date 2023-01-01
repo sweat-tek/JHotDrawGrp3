@@ -16,13 +16,11 @@ public class UngroupStrategy implements GroupingStrategy {
     }
 
     @Override
-    public boolean canPerformAction(DrawingView drawingView, Collection<Figure> figures) {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
+    public boolean canPerformAction(DrawingView drawingView, CompositeFigure compositeFigure, Collection<Figure> figures) {
+        return  drawingView.getSelectionCount() == 1 &&
+                drawingView.getSelectedFigures().iterator().next().getClass().equals(
+                    compositeFigure.getClass()
+                );
     }
 
     @Override
