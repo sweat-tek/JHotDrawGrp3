@@ -9,7 +9,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
 import javax.swing.undo.AbstractUndoableEdit;
 import java.util.Collection;
 
-abstract class GroupingUndoableEdit extends AbstractUndoableEdit {
+public abstract class GroupingUndoableEdit extends AbstractUndoableEdit {
     private final GroupingStrategy groupingStrategy;
     private final DrawingView drawingView;
     private final CompositeFigure prototype;
