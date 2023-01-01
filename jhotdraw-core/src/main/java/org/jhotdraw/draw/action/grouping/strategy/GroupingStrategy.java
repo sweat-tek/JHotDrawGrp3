@@ -20,6 +20,13 @@ public interface GroupingStrategy {
     String getID();
 
     /**
+     * @param drawingView The DrawingView which manages the views.
+     * @param figures    The Figures which should be grouped
+     * @return True, if the strategy action can be performed.
+     */
+    boolean canPerformAction(DrawingView drawingView, Collection<Figure> figures);
+
+    /**
      * Determines whether the strategy action can be performed.
      *
      * @return True, if the strategy action can be performed.
