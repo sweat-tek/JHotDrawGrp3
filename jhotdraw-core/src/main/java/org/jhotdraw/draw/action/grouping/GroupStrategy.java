@@ -1,8 +1,6 @@
-package org.jhotdraw.draw.action.grouping.strategy;
+package org.jhotdraw.draw.action.grouping;
 
 import org.jhotdraw.draw.DrawingView;
-import org.jhotdraw.draw.action.grouping.Grouping;
-import org.jhotdraw.draw.action.grouping.GroupingUndoableEdit;
 import org.jhotdraw.draw.figure.CompositeFigure;
 import org.jhotdraw.draw.figure.Figure;
 

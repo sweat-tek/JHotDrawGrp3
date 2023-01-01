@@ -17,7 +17,7 @@ import org.jhotdraw.draw.action.arrange.ArrangeAction;
 import org.jhotdraw.draw.action.arrange.ArrangeBringToFrontStrategy;
 import org.jhotdraw.draw.action.arrange.ArrangeSendToBackStrategy;
 import org.jhotdraw.draw.action.grouping.GroupingActionFactory;
-import org.jhotdraw.draw.action.grouping.strategy.UngroupStrategy;
+import org.jhotdraw.draw.action.grouping.UngroupStrategy;
 import org.jhotdraw.draw.tool.CreationTool;
 import org.jhotdraw.draw.tool.TextAreaCreationTool;
 import org.jhotdraw.draw.tool.TextCreationTool;

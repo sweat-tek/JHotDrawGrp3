@@ -1,4 +1,4 @@
-package org.jhotdraw.draw.action.grouping.strategy;
+package org.jhotdraw.draw.action.grouping;
 
 import org.jhotdraw.draw.DrawingView;
 import org.jhotdraw.draw.figure.CompositeFigure;

@@ -1,8 +1,6 @@
 package org.jhotdraw.draw.action.grouping;
 
 import org.jhotdraw.draw.DrawingEditor;
-import org.jhotdraw.draw.action.grouping.strategy.GroupStrategy;
-import org.jhotdraw.draw.action.grouping.strategy.GroupingStrategy;
 import org.jhotdraw.draw.figure.CompositeFigure;
 import org.jhotdraw.draw.figure.GroupFigure;
 
