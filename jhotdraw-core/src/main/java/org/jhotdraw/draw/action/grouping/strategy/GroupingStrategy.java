@@ -21,17 +21,11 @@ public interface GroupingStrategy {
 
     /**
      * @param drawingView The DrawingView which manages the views.
+     * @param compositeFigure The composite figure
      * @param figures    The Figures which should be grouped
      * @return True, if the strategy action can be performed.
      */
-    boolean canPerformAction(DrawingView drawingView, Collection<Figure> figures);
-
-    /**
-     * Determines whether the strategy action can be performed.
-     *
-     * @return True, if the strategy action can be performed.
-     */
-    //boolean isEnabled();
+    boolean canPerformAction(DrawingView drawingView, CompositeFigure compositeFigure, Collection<Figure> figures);
 
     /**
      * Performs the grouping action corresponding to the strategy
