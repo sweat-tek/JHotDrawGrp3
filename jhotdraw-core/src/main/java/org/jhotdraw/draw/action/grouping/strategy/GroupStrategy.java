@@ -1,6 +1,5 @@
 package org.jhotdraw.draw.action.grouping.strategy;
 
-import dk.sdu.mmmi.featuretracer.lib.FeatureEntryPoint;
 import org.jhotdraw.draw.DrawingView;
 import org.jhotdraw.draw.action.grouping.Grouping;
 import org.jhotdraw.draw.figure.CompositeFigure;
