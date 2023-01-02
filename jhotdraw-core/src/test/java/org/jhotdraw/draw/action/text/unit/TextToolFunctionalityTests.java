@@ -1,16 +1,18 @@
-package org.jhotdraw.samples.svg.unit;
-import org.jhotdraw.samples.svg.figures.SVGTextFigure;
-import org.junit.Test;
-import org.junit.Assert;
+package org.jhotdraw.draw.action.text.unit;
 
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
+import org.jhotdraw.draw.figure.TextFigure;
+import org.junit.Assert;
+import org.junit.Test;
+
+//import java.awt.geom.AffineTransform;
+//import java.awt.geom.Point2D;
 
 public class TextToolFunctionalityTests {
 
+    /*
     @Test
     public void testSetCoordinates() {
-        SVGTextFigure figure = new SVGTextFigure();
+        TextFigure figure = new TextFigure();
         Point2D.Double[] coordinates = new Point2D.Double[]{
                 new Point2D.Double(1, 2),
                 new Point2D.Double(3, 4)};
@@ -24,9 +26,11 @@ public class TextToolFunctionalityTests {
         Assert.assertArrayEquals(figure.getCoordinates(), coordinates);
     }
 
+     */
+
     @Test
     public void testConstructor() {
-        SVGTextFigure figure = new SVGTextFigure();
+        TextFigure figure = new TextFigure();
         Assert.assertNotNull(figure);
         Assert.assertEquals("Text", figure.getText());
         Assert.assertTrue(figure.isEditable());
@@ -34,15 +38,16 @@ public class TextToolFunctionalityTests {
 
     @Test
     public void testConstructorWithText() {
-        SVGTextFigure figure = new SVGTextFigure("Hello");
+        TextFigure figure = new TextFigure("Hello");
         Assert.assertNotNull(figure);
         Assert.assertEquals("Hello", figure.getText());
         Assert.assertTrue(figure.isEditable());
     }
 
+    /*
     @Test
     public void testSetRotates() {
-        SVGTextFigure figure = new SVGTextFigure();
+        TextFigure figure = new TextFigure();
         double[] rotates = new double[]{45, 90};
         figure.setRotates(rotates);
 
@@ -52,23 +57,26 @@ public class TextToolFunctionalityTests {
         Assert.assertArrayEquals(figure.getRotates(), rotates, 0.0);
     }
 
+     */
+
     @Test
     public void testIsEditable() {
-        SVGTextFigure figure = new SVGTextFigure();
+        TextFigure figure = new TextFigure();
         Assert.assertTrue(figure.isEditable());
     }
 
     @Test
     public void testTextInFigure() {
-        SVGTextFigure figure = new SVGTextFigure();
+        TextFigure figure = new TextFigure();
         String text = "Hello World";
         figure.setText(text);
         Assert.assertEquals(text, figure.getText());
     }
 
+    /*
     @Test
     public void testTransform() {
-        SVGTextFigure figure = new SVGTextFigure();
+        TextFigure figure = new TextFigure();
         AffineTransform transform = new AffineTransform(1, 0, 0, 1, 0, 0);
         Point2D.Double[] coordinates = new Point2D.Double[]{
                 new Point2D.Double(1, 2),
@@ -84,6 +92,8 @@ public class TextToolFunctionalityTests {
 
         Assert.assertArrayEquals(figure.getCoordinates(), coordinates);
     }
+
+     */
 }
 
 

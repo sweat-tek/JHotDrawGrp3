@@ -1,4 +1,4 @@
-package org.jhotdraw.samples.svg.behaviour;
+package org.jhotdraw.draw.action.text.behaviour;
 
 import com.tngtech.jgiven.junit.ScenarioTest;
 import org.junit.Test;

@@ -1,18 +1,19 @@
-package org.jhotdraw.samples.svg.behaviour;
+package org.jhotdraw.draw.action.text.behaviour;
+
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
-import org.jhotdraw.samples.svg.figures.SVGTextFigure;
+import org.jhotdraw.draw.figure.TextFigure;
 
 
 class GivenTextField extends Stage<GivenTextField> {
 
     @ProvidedScenarioState
-    SVGTextFigure svgTextFigure;
+    TextFigure svgTextFigure;
 
     @BeforeStage
     void createFigure() {
-        svgTextFigure = new SVGTextFigure();
+        svgTextFigure = new TextFigure();
     }
 
     GivenTextField AUserCreatesATextFigure() {

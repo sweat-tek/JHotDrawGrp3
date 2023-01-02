@@ -1,15 +1,15 @@
-package org.jhotdraw.samples.svg.behaviour;
+package org.jhotdraw.draw.action.text.behaviour;
 
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
-import org.jhotdraw.samples.svg.figures.SVGTextFigure;
+import org.jhotdraw.draw.figure.TextFigure;
 
 public class WhenUserCreatesText extends Stage<WhenUserCreatesText> {
 
     @ExpectedScenarioState
     @ProvidedScenarioState
-    private SVGTextFigure svgTextFigure;
+    TextFigure svgTextFigure;
 
     WhenUserCreatesText TheUserChangesTheText() {
         String text = "Hello World";
