@@ -31,4 +31,13 @@ public class WhenGrouping extends Stage<WhenGrouping> {
         return self();
     }
 
+    public WhenGrouping the_user_ungroups_the_figures() {
+        GroupingAction action = GroupingActionFactory.initiate(editor)
+            .withGroupingStrategy(new UngroupStrategy())
+            .create();
+
+        action.actionPerformed(mock(ActionEvent.class));
+
+        return self();
+    }
 }
