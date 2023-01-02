@@ -8,6 +8,7 @@ import org.jhotdraw.draw.DefaultDrawingView;
 import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.DrawingView;
 import org.jhotdraw.draw.figure.Figure;
+import org.jhotdraw.draw.figure.GroupFigure;
 
 import java.util.Collection;
 
@@ -27,6 +28,13 @@ public class GivenGrouping extends Stage<GivenGrouping> {
 
     public GivenGrouping some_ungrouped_figures(Collection<Figure> figures) {
         figures.forEach(view.getDrawing()::add);
+        return self();
+    }
+
+    public GivenGrouping some_grouped_figures(Collection<Figure> figures) {
+        GroupFigure group = new GroupFigure();
+        figures.forEach(group::add);
+        view.getDrawing().add(group);
         return self();
     }
 }
