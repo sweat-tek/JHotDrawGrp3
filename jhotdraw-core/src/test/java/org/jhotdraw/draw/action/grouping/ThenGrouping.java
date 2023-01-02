@@ -28,4 +28,11 @@ public class ThenGrouping extends Stage<ThenGrouping> {
         return self();
     }
 
+    public ThenGrouping the_editor_contains_the_ungrouped_figures(Collection<Figure> figures) {
+        Assertions.assertEquals(figures.size(), selection.size());
+
+        selection.forEach(f -> Assertions.assertTrue(figures.contains(f)));
+
+        return self();
+    }
 }
