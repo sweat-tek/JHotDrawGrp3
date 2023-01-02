@@ -10,11 +10,9 @@ package org.jhotdraw.draw.tool;
 import org.jhotdraw.draw.figure.TextHolderFigure;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.UndoableEdit;
 import org.jhotdraw.draw.*;
 import org.jhotdraw.draw.text.*;
-import org.jhotdraw.util.ResourceBundleUtil;
 
 /**
  * A tool to edit figures which implement the {@code TextHolderFigure} interface,
@@ -75,10 +73,7 @@ public class TextEditingTool extends AbstractTool implements ActionListener {
     }
 
     protected void beginEdit(TextHolderFigure textHolder) {
-        if (textField == null) {
-            textField = new FloatingTextField();
-            textField.addActionListener(this);
-        }
+        textField = TextEditUtil.initializeTextField(textField, this);
         if (textHolder != typingTarget && typingTarget != null) {
             endEdit();
         }
@@ -91,6 +86,12 @@ public class TextEditingTool extends AbstractTool implements ActionListener {
     public void mouseReleased(MouseEvent evt) {
     }
 
+    private void handleEmptyText(final TextHolderFigure editedFigure, final String oldText, final String newText) {
+        editedFigure.setText("");
+        UndoableEdit edit = TextEditUtil.createUndoableEdit(editedFigure, oldText, newText);
+        getDrawing().fireUndoableEditHappened(edit);
+    }
+
     protected void endEdit() {
         if (typingTarget != null) {
             typingTarget.willChange();
@@ -101,38 +102,13 @@ public class TextEditingTool extends AbstractTool implements ActionListener {
                 typingTarget.willChange();
                 typingTarget.setText(newText);
                 typingTarget.changed();
+            } else {
+                handleEmptyText(editedFigure, oldText, newText);
             }
-            UndoableEdit edit = new AbstractUndoableEdit() {
-                private static final long serialVersionUID = 1L;
-
-                @Override
-                public String getPresentationName() {
-                    ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.draw.Labels");
-                    return labels.getString("attribute.text.text");
-                }
-
-                @Override
-                public void undo() {
-                    super.undo();
-                    editedFigure.willChange();
-                    editedFigure.setText(oldText);
-                    editedFigure.changed();
-                }
-
-                @Override
-                public void redo() {
-                    super.redo();
-                    editedFigure.willChange();
-                    editedFigure.setText(newText);
-                    editedFigure.changed();
-                }
-            };
-            getDrawing().fireUndoableEditHappened(edit);
             typingTarget.changed();
             typingTarget = null;
             textField.endOverlay();
         }
-        //         view().checkDamage();
     }
 
     @Override
