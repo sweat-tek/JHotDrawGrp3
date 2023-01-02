@@ -29,12 +29,12 @@ public class ArrangeAction extends AbstractSelectedAction {
         final DrawingView view = getView();
         final LinkedList<Figure> figures = new LinkedList<>(view.getSelectedFigures());
 
-        ArrangeActionTrigger action = new ArrangeActionTrigger(
+        ArrangeEdit edit = new ArrangeEdit(
                 strategy, view, figures
         );
 
-        action.performAction();
+        edit.performEdit();
 
-        fireUndoableEditHappened(action);
+        fireUndoableEditHappened(edit);
     }
 }
