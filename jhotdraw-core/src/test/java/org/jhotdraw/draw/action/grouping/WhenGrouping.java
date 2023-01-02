@@ -5,6 +5,7 @@ import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.figure.Figure;
+import org.jhotdraw.draw.figure.GroupFigure;
 
 import java.awt.event.ActionEvent;
 import java.util.Collection;
@@ -21,6 +22,13 @@ public class WhenGrouping extends Stage<WhenGrouping> {
 
     public WhenGrouping the_user_selects_the_figures(Collection<Figure> figures) {
         figures.forEach(editor.getActiveView()::addToSelection);
+        this.selection = editor.getActiveView().getSelectedFigures();
+        return self();
+    }
+
+    public WhenGrouping the_user_selects_the_group() {
+        GroupFigure group = (GroupFigure) editor.getActiveView().getDrawing().getChildren().get(0);
+        editor.getActiveView().addToSelection(group);
         this.selection = editor.getActiveView().getSelectedFigures();
         return self();
     }
