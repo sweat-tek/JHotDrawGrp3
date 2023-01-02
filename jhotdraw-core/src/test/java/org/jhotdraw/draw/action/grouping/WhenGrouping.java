@@ -1,4 +1,7 @@
 package org.jhotdraw.draw.action.grouping;
 
-public class WhenGrouping {
+import com.tngtech.jgiven.Stage;
+
+public class WhenGrouping extends Stage<WhenGrouping> {
+
 }

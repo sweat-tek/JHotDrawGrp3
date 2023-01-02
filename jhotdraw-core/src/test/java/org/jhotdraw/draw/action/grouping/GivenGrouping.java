@@ -1,4 +1,7 @@
 package org.jhotdraw.draw.action.grouping;
 
-public class GivenGrouping {
+import com.tngtech.jgiven.Stage;
+
+public class GivenGrouping extends Stage<GivenGrouping> {
+
 }
