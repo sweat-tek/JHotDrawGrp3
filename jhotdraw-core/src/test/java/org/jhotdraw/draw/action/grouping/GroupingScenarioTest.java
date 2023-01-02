@@ -21,4 +21,15 @@ public class GroupingScenarioTest extends ScenarioTest<GivenGrouping, WhenGroupi
                 .and().the_user_groups_the_figures();
         then().the_editor_contains_the_group_containing_the_figures(figures);
     }
+
+    @Test
+    public void ungroup_figures() {
+        Collection<Figure> figures = List.of(new RectangleFigure(), new RectangleFigure(), new TextFigure(), new RoundRectangleFigure());
+
+        given().some_grouped_figures(figures);
+        when().the_user_selects_the_group()
+                .and().the_user_ungroups_the_figures();
+        then().the_editor_contains_the_ungrouped_figures(figures);
+    }
+
 }
