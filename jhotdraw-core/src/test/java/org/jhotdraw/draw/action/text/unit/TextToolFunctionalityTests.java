@@ -9,25 +9,6 @@ import org.junit.Test;
 
 public class TextToolFunctionalityTests {
 
-    /*
-    @Test
-    public void testSetCoordinates() {
-        TextFigure figure = new TextFigure();
-        Point2D.Double[] coordinates = new Point2D.Double[]{
-                new Point2D.Double(1, 2),
-                new Point2D.Double(3, 4)};
-        figure.setCoordinates(coordinates);
-
-        System.out.println("Specified coordinates: x: " + coordinates[0].getX() + ", y: " + coordinates[0].getY());
-        System.out.println("Expected coordinates: " +
-                "x: " + figure.getCoordinates()[0].getX() + ", " +
-                "y: " + figure.getCoordinates()[0].getY());
-
-        Assert.assertArrayEquals(figure.getCoordinates(), coordinates);
-    }
-
-     */
-
     @Test
     public void testConstructor() {
         TextFigure figure = new TextFigure();
@@ -44,6 +25,20 @@ public class TextToolFunctionalityTests {
         Assert.assertTrue(figure.isEditable());
     }
 
+    @Test
+    public void testIsEditable() {
+        TextFigure figure = new TextFigure();
+        Assert.assertTrue(figure.isEditable());
+    }
+
+    @Test
+    public void testTextInFigure() {
+        TextFigure figure = new TextFigure();
+        String text = "Hello World";
+        figure.setText(text);
+        Assert.assertEquals(text, figure.getText());
+    }
+
     /*
     @Test
     public void testSetRotates() {
@@ -58,20 +53,6 @@ public class TextToolFunctionalityTests {
     }
 
      */
-
-    @Test
-    public void testIsEditable() {
-        TextFigure figure = new TextFigure();
-        Assert.assertTrue(figure.isEditable());
-    }
-
-    @Test
-    public void testTextInFigure() {
-        TextFigure figure = new TextFigure();
-        String text = "Hello World";
-        figure.setText(text);
-        Assert.assertEquals(text, figure.getText());
-    }
 
     /*
     @Test
@@ -92,7 +73,24 @@ public class TextToolFunctionalityTests {
 
         Assert.assertArrayEquals(figure.getCoordinates(), coordinates);
     }
+     */
 
+        /*
+    @Test
+    public void testSetCoordinates() {
+        TextFigure figure = new TextFigure();
+        Point2D.Double[] coordinates = new Point2D.Double[]{
+                new Point2D.Double(1, 2),
+                new Point2D.Double(3, 4)};
+        figure.setCoordinates(coordinates);
+
+        System.out.println("Specified coordinates: x: " + coordinates[0].getX() + ", y: " + coordinates[0].getY());
+        System.out.println("Expected coordinates: " +
+                "x: " + figure.getCoordinates()[0].getX() + ", " +
+                "y: " + figure.getCoordinates()[0].getY());
+
+        Assert.assertArrayEquals(figure.getCoordinates(), coordinates);
+    }
      */
 }
 
