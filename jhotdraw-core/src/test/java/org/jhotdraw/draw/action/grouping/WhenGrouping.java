@@ -28,6 +28,7 @@ public class WhenGrouping extends Stage<WhenGrouping> {
     public WhenGrouping the_user_groups_the_figures() {
         GroupingAction action = GroupingActionFactory.initiate(editor)
             .withGroupingStrategy(new GroupStrategy())
+            .withCompositeFigure(new GroupFigure())
             .create();
 
         action.actionPerformed(mock(ActionEvent.class));
@@ -38,6 +39,7 @@ public class WhenGrouping extends Stage<WhenGrouping> {
     public WhenGrouping the_user_ungroups_the_figures() {
         GroupingAction action = GroupingActionFactory.initiate(editor)
             .withGroupingStrategy(new UngroupStrategy())
+            .withCompositeFigure(new GroupFigure())
             .create();
 
         action.actionPerformed(mock(ActionEvent.class));
