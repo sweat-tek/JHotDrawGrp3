@@ -3,10 +3,7 @@ package org.jhotdraw.draw.action.grouping;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
-import org.jhotdraw.draw.DefaultDrawingEditor;
-import org.jhotdraw.draw.DefaultDrawingView;
-import org.jhotdraw.draw.DrawingEditor;
-import org.jhotdraw.draw.DrawingView;
+import org.jhotdraw.draw.*;
 import org.jhotdraw.draw.figure.Figure;
 import org.jhotdraw.draw.figure.GroupFigure;
 
@@ -23,6 +20,7 @@ public class GivenGrouping extends Stage<GivenGrouping> {
     public void before() {
         this.editor = new DefaultDrawingEditor();
         this.view = new DefaultDrawingView();
+        this.view.setDrawing(new DefaultDrawing());
         editor.setActiveView(view);
     }
 
