@@ -7,38 +7,6 @@
  */
 package org.jhotdraw.gui.action;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.color.ColorSpace;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import javax.swing.AbstractAction;
-import javax.swing.AbstractButton;
-import javax.swing.Action;
-import javax.swing.ButtonGroup;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
-import javax.swing.JToolBar;
-import javax.swing.plaf.ColorChooserUI;
-import javax.swing.text.StyledEditorKit;
 import org.jhotdraw.action.edit.CopyAction;
 import org.jhotdraw.action.edit.CutAction;
 import org.jhotdraw.action.edit.DuplicateAction;
@@ -47,52 +15,15 @@ import org.jhotdraw.api.app.Disposable;
 import org.jhotdraw.color.HSBColorSpace;
 import org.jhotdraw.draw.AttributeKey;
 import org.jhotdraw.draw.AttributeKeys;
-import static org.jhotdraw.draw.AttributeKeys.END_DECORATION;
-import static org.jhotdraw.draw.AttributeKeys.FILL_COLOR;
-import static org.jhotdraw.draw.AttributeKeys.FILL_UNDER_STROKE;
-import static org.jhotdraw.draw.AttributeKeys.FONT_BOLD;
-import static org.jhotdraw.draw.AttributeKeys.FONT_FACE;
-import static org.jhotdraw.draw.AttributeKeys.FONT_ITALIC;
-import static org.jhotdraw.draw.AttributeKeys.FONT_UNDERLINE;
-import static org.jhotdraw.draw.AttributeKeys.START_DECORATION;
-import static org.jhotdraw.draw.AttributeKeys.STROKE_CAP;
-import static org.jhotdraw.draw.AttributeKeys.STROKE_COLOR;
-import static org.jhotdraw.draw.AttributeKeys.STROKE_DASHES;
-import static org.jhotdraw.draw.AttributeKeys.STROKE_INNER_WIDTH_FACTOR;
-import static org.jhotdraw.draw.AttributeKeys.STROKE_JOIN;
-import static org.jhotdraw.draw.AttributeKeys.STROKE_PLACEMENT;
-import static org.jhotdraw.draw.AttributeKeys.STROKE_TYPE;
-import static org.jhotdraw.draw.AttributeKeys.STROKE_WIDTH;
-import static org.jhotdraw.draw.AttributeKeys.TEXT_COLOR;
 import org.jhotdraw.draw.DrawingEditor;
 import org.jhotdraw.draw.DrawingView;
-import org.jhotdraw.draw.action.AbstractSelectedAction;
-import org.jhotdraw.draw.action.AlignAction;
-import org.jhotdraw.draw.action.ApplyAttributesAction;
-import org.jhotdraw.draw.action.AttributeAction;
-import org.jhotdraw.draw.action.AttributeToggler;
-import org.jhotdraw.draw.action.BringToFrontAction;
-import org.jhotdraw.draw.action.ColorIcon;
-import org.jhotdraw.draw.action.DefaultAttributeAction;
-import org.jhotdraw.draw.action.DrawingAttributeAction;
-import org.jhotdraw.draw.action.DrawingColorChooserAction;
-import org.jhotdraw.draw.action.DrawingColorChooserHandler;
-import org.jhotdraw.draw.action.DrawingColorIcon;
-import org.jhotdraw.draw.action.EditorColorChooserAction;
-import org.jhotdraw.draw.action.EditorColorIcon;
-import org.jhotdraw.draw.action.GroupAction;
-import org.jhotdraw.draw.action.LineDecorationIcon;
-import org.jhotdraw.draw.action.MoveAction;
-import org.jhotdraw.draw.action.PickAttributesAction;
-import org.jhotdraw.draw.action.SelectSameAction;
-import org.jhotdraw.draw.action.SelectionColorChooserAction;
-import org.jhotdraw.draw.action.SelectionColorChooserHandler;
-import org.jhotdraw.draw.action.SelectionColorIcon;
-import org.jhotdraw.draw.action.SendToBackAction;
-import org.jhotdraw.draw.action.StrokeIcon;
-import org.jhotdraw.draw.action.UngroupAction;
-import org.jhotdraw.draw.action.ZoomAction;
-import org.jhotdraw.draw.action.ZoomEditorAction;
+import org.jhotdraw.draw.action.*;
+import org.jhotdraw.draw.action.arrange.ArrangeAction;
+import org.jhotdraw.draw.action.arrange.ArrangeBringToFrontStrategy;
+import org.jhotdraw.draw.action.arrange.ArrangeSendToBackStrategy;
+import org.jhotdraw.draw.action.grouping.GroupingActionFactory;
+import org.jhotdraw.draw.action.grouping.GroupStrategy;
+import org.jhotdraw.draw.action.grouping.UngroupStrategy;
 import org.jhotdraw.draw.decoration.ArrowTip;
 import org.jhotdraw.draw.decoration.LineDecoration;
 import org.jhotdraw.draw.event.SelectionComponentRepainter;
@@ -109,6 +40,21 @@ import org.jhotdraw.util.ActionUtil;
 import org.jhotdraw.util.Images;
 import org.jhotdraw.util.Methods;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.*;
+import javax.swing.plaf.ColorChooserUI;
+import javax.swing.text.StyledEditorKit;
+import java.awt.*;
+import java.awt.color.ColorSpace;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.*;
+
+import static org.jhotdraw.draw.AttributeKeys.*;
 
 /**
  * ButtonFactory.
@@ -348,11 +294,19 @@ public class ButtonFactory {
         LinkedList<Action> a = new LinkedList<>();
         a.add(new DuplicateAction());
         a.add(null); // separator
-        a.add(new GroupAction(editor));
-        a.add(new UngroupAction(editor));
+        a.add(
+            GroupingActionFactory.initiate(editor)
+            .withGroupingStrategy(new GroupStrategy())
+            .create()
+        );
+        a.add(
+            GroupingActionFactory.initiate(editor)
+            .withGroupingStrategy(new UngroupStrategy())
+            .create()
+        );
         a.add(null); // separator
-        a.add(new BringToFrontAction(editor));
-        a.add(new SendToBackAction(editor));
+        a.add(new ArrangeAction(editor, new ArrangeBringToFrontStrategy()));
+        a.add(new ArrangeAction(editor, new ArrangeSendToBackStrategy()));
         return a;
     }
 
@@ -1677,9 +1631,9 @@ public class ButtonFactory {
         bar.add(d = new MoveAction.South(editor)).setFocusable(false);
         dsp.add(d);
         bar.addSeparator();
-        bar.add(new BringToFrontAction(editor)).setFocusable(false);
+        bar.add(new ArrangeAction(editor, new ArrangeBringToFrontStrategy())).setFocusable(false);
         dsp.add(d);
-        bar.add(new SendToBackAction(editor)).setFocusable(false);
+        bar.add(new ArrangeAction(editor, new ArrangeSendToBackStrategy())).setFocusable(false);
         dsp.add(d);
     }
 
