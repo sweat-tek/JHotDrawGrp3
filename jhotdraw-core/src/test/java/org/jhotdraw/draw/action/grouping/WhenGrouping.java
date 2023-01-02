@@ -16,8 +16,12 @@ public class WhenGrouping extends Stage<WhenGrouping> {
     @ProvidedScenarioState
     private DrawingEditor editor;
 
+    @ProvidedScenarioState
+    private Collection<Figure> selection;
+
     public WhenGrouping the_user_selects_the_figures(Collection<Figure> figures) {
         figures.forEach(editor.getActiveView()::addToSelection);
+        this.selection = editor.getActiveView().getSelectedFigures();
         return self();
     }
 
