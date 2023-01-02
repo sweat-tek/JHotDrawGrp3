@@ -1,4 +1,4 @@
-package org.jhotdraw.draw.figure.unit;
+package org.jhotdraw.samples.svg.unit;
 import org.jhotdraw.samples.svg.figures.SVGTextFigure;
 import org.junit.Test;
 import org.junit.Assert;

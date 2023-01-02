@@ -1,4 +1,4 @@
-package org.jhotdraw.draw.figure.behaviour;
+package org.jhotdraw.samples.svg.behaviour;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
