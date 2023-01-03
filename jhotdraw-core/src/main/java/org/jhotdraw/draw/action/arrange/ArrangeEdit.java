@@ -9,12 +9,12 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import java.util.Collection;
 
-public class ArrangeActionTrigger extends AbstractUndoableEdit {
+public class ArrangeEdit extends AbstractUndoableEdit {
     private final ArrangeStrategy strategy;
     private DrawingView view;
     private Collection<Figure> figures;
 
-    public ArrangeActionTrigger(ArrangeStrategy strategy, DrawingView view, Collection<Figure> figures) {
+    public ArrangeEdit(ArrangeStrategy strategy, DrawingView view, Collection<Figure> figures) {
         super();
         this.strategy = strategy;
         this.view = view;
@@ -27,19 +27,19 @@ public class ArrangeActionTrigger extends AbstractUndoableEdit {
         return labels.getTextProperty(strategy.getId());
     }
 
-    public void performAction() {
+    public void performEdit() {
         strategy.arrangeFigures(view, figures);
     }
 
     @Override
     public void undo() throws CannotUndoException {
         super.undo();
-        strategy.arrangeFigures(view, figures);
+        strategy.unarrangeFigures(view, figures);
     }
 
     @Override
     public void redo() throws CannotRedoException {
         super.redo();
-        this.performAction();
+        this.performEdit();
     }
 }

@@ -1,5 +1,6 @@
 package org.jhotdraw.draw.action.arrange;
 
+import org.jhotdraw.draw.Drawing;
 import org.jhotdraw.draw.DrawingView;
 import org.jhotdraw.draw.figure.Figure;
 
@@ -21,6 +22,7 @@ public class ArrangeSendToBackStrategy implements ArrangeStrategy {
 
     @Override
     public void unarrangeFigures(DrawingView view, Collection<Figure> figures) {
-        figures.forEach(view.getDrawing()::bringToFront);
+        Drawing drawing = view.getDrawing();
+        drawing.sort(figures).forEach(drawing::bringToFront);
     }
 }

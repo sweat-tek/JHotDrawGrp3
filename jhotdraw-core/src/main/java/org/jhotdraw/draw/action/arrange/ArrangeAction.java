@@ -8,7 +8,7 @@ import org.jhotdraw.draw.figure.Figure;
 import org.jhotdraw.util.ResourceBundleUtil;
 
 import java.awt.event.ActionEvent;
-import java.util.Collection;
+import java.util.LinkedList;
 
 public class ArrangeAction extends AbstractSelectedAction {
     private final ArrangeStrategy strategy;
@@ -27,16 +27,14 @@ public class ArrangeAction extends AbstractSelectedAction {
     @FeatureEntryPoint("Arrange")
     public void actionPerformed(ActionEvent e) {
         final DrawingView view = getView();
-        final Collection<Figure> figures = view.getSelectedFigures();
+        final LinkedList<Figure> figures = new LinkedList<>(view.getSelectedFigures());
 
-        performArrangeAction(this.strategy, view, figures);
-    }
+        ArrangeEdit edit = new ArrangeEdit(
+                strategy, view, figures
+        );
 
-    public void performArrangeAction(ArrangeStrategy strategy, DrawingView view, Collection<Figure> figures) {
-        ArrangeActionTrigger action = new ArrangeActionTrigger(strategy, view, figures);
+        edit.performEdit();
 
-        action.performAction();
-
-        fireUndoableEditHappened(action);
+        fireUndoableEditHappened(edit);
     }
 }
