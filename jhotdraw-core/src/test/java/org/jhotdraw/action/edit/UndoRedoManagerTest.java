@@ -14,4 +14,17 @@ public class UndoRedoManagerTest extends ScenarioTest<NoAction, Action, AfterAct
         assertEquals(100, instance.getLimit());
     }
 
+    @Test
+    public void testCanUndo() {
+        given().nothingToUndo();
+        when().an_undoable_action_is_made();
+        then().the_action_can_be_undone();
+    }
+
+    @Test
+    public void testCanRedo() {
+        given().nothingtoRedo();
+        when().a_redoable_action_is_made();
+        then().the_action_can_be_redone();
+    }
 }
