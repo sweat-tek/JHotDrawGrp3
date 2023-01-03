@@ -205,10 +205,6 @@ public class SVGTextFigure
                     break;
             }
             tx.rotate(rotates[0]);
-            /*
-             if (get(TRANSFORM) != null) {
-             tx.preConcatenate(get(TRANSFORM));
-             }*/
             cachedTextShape = tx.createTransformedShape(textLayout.getOutline(tx));
             cachedTextShape = textLayout.getOutline(tx);
         }
@@ -240,8 +236,8 @@ public class SVGTextFigure
                 set(TRANSFORM, t);
             }
         } else {
-            for (int i = 0; i < coordinates.length; i++) {
-                tx.transform(coordinates[i], coordinates[i]);
+            for (Point2D.Double coordinate : coordinates) {
+                tx.transform(coordinate, coordinate);
             }
             if (get(FILL_GRADIENT) != null
                     && !get(FILL_GRADIENT).isRelativeToFigureBounds()) {
@@ -366,7 +362,6 @@ public class SVGTextFigure
 
     @Override
     public float getFontSize() {
-        //   return get(FONT_SIZE).floatValue();
         Point2D.Double p = new Point2D.Double(0, get(FONT_SIZE));
         AffineTransform tx = get(TRANSFORM);
         if (tx != null) {
@@ -374,12 +369,6 @@ public class SVGTextFigure
             Point2D.Double p0 = new Point2D.Double(0, 0);
             tx.transform(p0, p0);
             p.y -= p0.y;
-            /*
-             try {
-             tx.inverseTransform(p, p);
-             } catch (NoninvertibleTransformException ex) {
-             ex.printStackTrace();
-             }*/
         }
         return (float) Math.abs(p.y);
     }
@@ -403,22 +392,18 @@ public class SVGTextFigure
     @Override
     public Collection<Handle> createHandles(int detailLevel) {
         LinkedList<Handle> handles = new LinkedList<Handle>();
-        switch (detailLevel % 2) {
-            case -1: // Mouse hover handles
-                handles.add(new BoundsOutlineHandle(this, false, true));
-                break;
-            case 0:
-                handles.add(new BoundsOutlineHandle(this));
-                handles.add(new MoveHandle(this, RelativeLocator.northWest()));
-                handles.add(new MoveHandle(this, RelativeLocator.northEast()));
-                handles.add(new MoveHandle(this, RelativeLocator.southWest()));
-                handles.add(new MoveHandle(this, RelativeLocator.southEast()));
-                handles.add(new FontSizeHandle(this));
-                handles.add(new LinkHandle(this));
-                break;
-            case 1:
-                TransformHandleKit.addTransformHandles(this, handles);
-                break;
+        if (detailLevel % 2 == -1) {
+            handles.add(new BoundsOutlineHandle(this, false, true));
+        } else if (detailLevel % 2 == 0) {
+            handles.add(new BoundsOutlineHandle(this));
+            handles.add(new MoveHandle(this, RelativeLocator.northWest()));
+            handles.add(new MoveHandle(this, RelativeLocator.northEast()));
+            handles.add(new MoveHandle(this, RelativeLocator.southWest()));
+            handles.add(new MoveHandle(this, RelativeLocator.southEast()));
+            handles.add(new FontSizeHandle(this));
+            handles.add(new LinkHandle(this));
+        } else if (detailLevel % 2 == 1) {
+            TransformHandleKit.addTransformHandles(this, handles);
         }
         return handles;
     }
@@ -432,8 +417,7 @@ public class SVGTextFigure
     @Override
     public Tool getTool(Point2D.Double p) {
         if (isEditable() && contains(p)) {
-            TextEditingTool tool = new TextEditingTool(this);
-            return tool;
+            return new TextEditingTool(this);
         }
         return null;
     }

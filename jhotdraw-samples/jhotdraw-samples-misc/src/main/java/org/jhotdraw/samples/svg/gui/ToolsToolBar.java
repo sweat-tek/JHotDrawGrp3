@@ -16,6 +16,8 @@ import org.jhotdraw.draw.action.*;
 import org.jhotdraw.draw.action.arrange.ArrangeAction;
 import org.jhotdraw.draw.action.arrange.ArrangeBringToFrontStrategy;
 import org.jhotdraw.draw.action.arrange.ArrangeSendToBackStrategy;
+import org.jhotdraw.draw.action.grouping.GroupingActionFactory;
+import org.jhotdraw.draw.action.grouping.UngroupStrategy;
 import org.jhotdraw.draw.tool.CreationTool;
 import org.jhotdraw.draw.tool.TextAreaCreationTool;
 import org.jhotdraw.draw.tool.TextCreationTool;
@@ -177,10 +179,21 @@ public class ToolsToolBar extends AbstractToolBar {
         AbstractSelectedAction a;
         list.add(new DuplicateAction());
         list.add(null); // separator
-        list.add(a = new GroupAction(editor, new SVGGroupFigure()));
+
+        list.add(
+                a = GroupingActionFactory.initiate(editor)
+                        .withCompositeFigure(new SVGGroupFigure())
+                        .create()
+        );
         disposables.add(a);
-        list.add(a = new UngroupAction(editor, new SVGGroupFigure()));
+        list.add(
+                a = GroupingActionFactory.initiate(editor)
+                        .withCompositeFigure(new SVGGroupFigure())
+                        .withGroupingStrategy(new UngroupStrategy())
+                        .create()
+        );
         disposables.add(a);
+        list.add(null); // separator
         list.add(a = new CombineAction(editor));
         disposables.add(a);
         list.add(a = new SplitAction(editor));
